@@ -1,0 +1,15 @@
+@import 'tailwindcss';
+@import '../../../assets/tailwind-theme.css';
+@import 'tailwindcss-primeui';
+@import '../../../assets/primeng-overrides.css';
+
+@custom-variant dark (&:where(.p-dark, .p-dark *));
+
+html, body {
+  margin: 0;
+  height: 100%;
+  font-size: 1rem;
+  box-sizing: border-box;
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+

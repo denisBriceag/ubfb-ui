@@ -1,0 +1,38 @@
+<div
+  class="flex justify-between items-center py-4 px-8 relative lg:static bg-surface-0 dark:bg-surface-950 border-b border-surface-200 dark:border-surface-700"
+>
+  <div class="flex items-center gap-8">
+    <a
+      pStyleClass="#app-sidebar-emoji"
+      enterFromClass="hidden"
+      enterActiveClass="animate-fadeinleft"
+      leaveToClass="hidden"
+      leaveActiveClass="animate-fadeoutleft"
+      resizeSelector=".resize-container-9"
+      class="cursor-pointer flex items-center justify-center lg:hidden text-surface-700 dark:text-surface-100"
+      [hideOnOutsideClick]="true"
+      [hideOnResize]="true"
+    >
+      <i class="pi pi-bars text-xl! leading-none!"></i>
+    </a>
+  </div>
+
+  <div class="flex items-center gap-2">
+    @if (themeService.currentTheme$ | async; as theme) {
+      <p-button
+        rounded="true"
+        severity="secondary"
+        [icon]="theme === 'light' ? 'pi pi-moon' : 'pi pi-sun'"
+        (click)="themeService.toggleTheme(theme === 'light' ? 'dark' : 'light')"
+      />
+    }
+
+    <p-avatar
+      size="large"
+      shape="circle"
+      [pt]="{
+        root: { class: 'w-[var(--p-button-icon-only-width)] h-[var(--p-button-icon-only-width)]' },
+      }"
+    />
+  </div>
+</div>

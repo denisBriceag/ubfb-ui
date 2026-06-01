@@ -5,6 +5,99 @@
     "packageManager": "pnpm"
   },
   "newProjectRoot": "projects",
+  "schematics": {
+    "@schematics/angular:component": {
+      "style": "none",
+      "changeDetection": "OnPush",
+      "addTypeToClassName": true,
+      "standalone": true
+    },
+    "@schematics/angular:directive": {
+      "addTypeToClassName": true,
+      "standalone": true
+    },
+    "@schematics/angular:pipe": {
+      "standalone": true,
+      "typeSeparator": "."
+    },
+    "@schematics/angular:service": {
+      "addTypeToClassName": true
+    }
+  },
   "projects": {
+    "admin": {
+      "projectType": "application",
+      "root": "projects/admin",
+      "sourceRoot": "projects/admin/src",
+      "prefix": "admin",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "projects/admin/src/main.ts",
+            "tsConfig": "projects/admin/tsconfig.app.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/admin/public"
+              },
+              {
+                "glob": "**/*",
+                "input": "assets/fonts",
+                "output": "/assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "assets/logos",
+                "output": "/assets"
+              }
+            ],
+            "styles": [
+              "projects/admin/src/styles.css",
+              "assets/primeicons.css",
+              "assets/material-icons.css"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "admin:build:production"
+            },
+            "development": {
+              "buildTarget": "admin:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test"
+        }
+      }
+    }
   }
 }

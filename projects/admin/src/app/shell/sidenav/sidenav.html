@@ -1,0 +1,73 @@
+<aside
+  id="app-sidebar-emoji"
+  class="w-70 h-screen hidden lg:flex shrink-0 absolute lg:static left-0 top-0 z-10 select-none bg-surface-0 dark:bg-surface-950 border-r border-surface-200 dark:border-surface-700"
+>
+  <div class="flex flex-col justify-between h-full w-full">
+    <div class="flex flex-col h-full w-full">
+      <a class="w-full px-4 py-6" routerLink="/">
+        <admin-logo-mobile class="block md:hidden text-primary dark:text-white" />
+        <admin-logo-desktop class="hidden md:block text-slate-700 dark:text-white" />
+      </a>
+
+      <div class="overflow-y-auto flex-1 p-2 pt-6 flex flex-col gap-4">
+        <div class="flex flex-col gap-1">
+          @for (option of options; track $index) {
+            <a
+              [routerLink]="option.link"
+              class="flex items-center cursor-pointer p-3 gap-2 rounded-lg text-surface-700 dark:text-surface-200 hover:bg-primary-50 dark:hover:bg-primary-800 transition-colors duration-150 hover:text-primary-900 dark:hover:text-primary-50 group border border-transparent hover:border hover:border-surface-200 dark:hover:border-surface-700"
+            >
+              @if(!option.iconName) {
+                <i
+                  class="text-base! leading-none! text-surface-500 dark:text-surface-400 group-hover:text-surface-900 dark:group-hover:text-surface-50"
+                  [attr.class]="option.iconClass"
+                ></i>
+              } @else {
+                <i
+                  class="text-base! leading-none! text-surface-500 dark:text-surface-400 group-hover:text-surface-900 dark:group-hover:text-surface-50"
+                  [attr.class]="option.iconClass"
+                >{{ option.iconName }}</i>
+              }
+
+              <span class="font-medium text-base leading-tight">{{ option.label }}</span>
+            </a>
+          }
+        </div>
+
+        @if (true) {
+          <hr class="border-t border-surface-200 dark:border-surface-800 my-0" />
+
+          <a
+            class="flex items-center cursor-pointer p-3 gap-2 rounded-lg text-surface-700 dark:text-surface-200 hover:bg-primary-50 dark:hover:bg-primary-800 transition-colors duration-150 hover:text-primary-900 dark:hover:text-primary-50 group border border-transparent hover:border hover:border-surface-200 dark:hover:border-surface-700"
+          >
+            <i
+              class="pi pi-users text-base! leading-none! text-surface-500 dark:text-surface-400 group-hover:text-primary-900 dark:group-hover:text-primary-50"
+            ></i>
+            <span class="font-medium text-base leading-tight">Users</span>
+          </a>
+        }
+      </div>
+    </div>
+
+    <div class="p-2">
+      <ul class="list-none p-0 m-0 flex flex-col gap-1">
+        <li>
+          <a
+            class="flex items-center cursor-pointer p-3 gap-2 rounded-lg text-surface-700 dark:text-surface-200 hover:bg-primary-50 dark:hover:bg-primary-800 transition-colors duration-150 hover:text-primary-900 dark:hover:text-primary-50 group border border-transparent hover:border hover:border-surface-200 dark:hover:border-surface-700"
+          >
+            <i class="pi pi-question-circle text-base! leading-none! text-surface-500 dark:text-surface-400 group-hover:text-primary-900 dark:group-hover:text-primary-50"></i>
+            <span class="font-medium text-base leading-tight">Help</span>
+          </a>
+        </li>
+
+        <li>
+          <a
+            class="flex items-center cursor-pointer p-3 gap-2 rounded-lg text-surface-700 dark:text-surface-200 hover:bg-primary-50 dark:hover:bg-primary-800 transition-colors duration-150 hover:text-primary-900 dark:hover:text-primary-50 group border border-transparent hover:border hover:border-surface-200 dark:hover:border-surface-700"
+          >
+            <i class="pi pi-cog text-base! leading-none! text-surface-500 dark:text-surface-400 group-hover:text-primary-900 dark:group-hover:text-primary-50"></i>
+            <span class="font-medium text-base leading-tight">Settings</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</aside>
