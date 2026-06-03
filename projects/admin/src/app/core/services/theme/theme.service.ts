@@ -1,5 +1,5 @@
 import { DestroyRef, DOCUMENT, inject, Injectable } from '@angular/core';
-import { BehaviorSubject, fromEvent, map, shareReplay, startWith, tap } from 'rxjs';
+import { BehaviorSubject, fromEvent, map, startWith, tap } from 'rxjs';
 
 import { UBFB_LOCAL_STORAGE } from '../../tokens/local-storage.token';
 import { storageKeys } from '../../configs/storage-keys.config';
@@ -25,7 +25,7 @@ export class ThemeService {
     this._setTheme(theme, true);
   }
 
-  private _setTheme(theme: UbfbTheme, fromStorage: boolean = false): void {
+  private _setTheme(theme: UbfbTheme, fromStorage = false): void {
     const element = this._document.querySelector('html');
 
     element?.classList[theme === 'dark' ? 'add' : 'remove']('p-dark');

@@ -4,12 +4,12 @@ import { RouterLink } from '@angular/router';
 import { LogoMobile } from '../logos/logo-mobile/logo-mobile';
 import { LogoDesktop } from '../logos/logo-desktop/logo-desktop';
 
-type SidenavOption = {
+interface SidenavOption {
   label: string;
   iconClass: string;
   link: string;
   iconName?: string;
-};
+}
 
 @Component({
   selector: 'admin-sidenav',
