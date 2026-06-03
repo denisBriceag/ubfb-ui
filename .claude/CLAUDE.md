@@ -1,6 +1,16 @@
 
 You are an expert in TypeScript, Angular, and scalable web application development. You write functional, maintainable, performant, and accessible code following Angular and TypeScript best practices.
 
+## Resources
+- Style guide: https://angular.dev/style-guide
+- Angular: https://angular.dev/essentials/components · /signals · /templates · /dependency-injection
+- Tailwind: https://tailwindcss.com/docs/styling-with-utility-classes
+- Transloco: https://jsverse.gitbook.io/transloco/core-concepts/signals
+- NgRx Signals: https://ngrx.io/guide/signals
+- PrimeNG: https://primeng.org/configuration · https://github.com/primefaces/primeng
+- ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/
+
+
 ## TypeScript Best Practices
 
 - Use strict type checking
@@ -53,3 +63,62 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 - Design services around a single responsibility
 - Use the `providedIn: 'root'` option for singleton services
 - Use the `inject()` function instead of constructor injection
+
+# Styling System
+
+## Tools overview
+
+| Tool                    | Role                                                         |
+| ----------------------- | ------------------------------------------------------------ |
+| Tailwind CSS 4      | Utility classes for layout, spacing, typography, colours     |
+| tailwindcss-primeui | Bridges PrimeNG CSS variables into Tailwind's utility system |
+| PrimeNG 21          | UI component library (buttons, dialogs, tables, etc.)        |
+| @primeuix/themes    | PrimeNG theming API                                          |
+
+No separate component CSS files are written. All styling lives in Tailwind utility classes directly on elements. The only exceptions are src/style/primeng-overrides.css, src/style/scrollbar.css, and src/style/cdk-dragdrop.css, which patch cases where PrimeNG or CDK styles cannot be overridden with utilities.
+
+## Dark mode
+
+Dark mode is toggled by adding/removing the p-dark CSS class on the <html> element. ThemeService.toggleTheme() manages this. PrimeNG reads the .p-dark selector (configured in providePrimeNG) to apply the dark color scheme tokens.
+
+---
+
+## CSS layer order
+
+PrimeNG's CSS is registered in explicit cascade layers via the providePrimeNG config:
+
+---
+
+## PrimeNG passthrough (pt) API
+
+The pt prop injects Tailwind classes directly into PrimeNG's internal DOM structure without needing CSS overrides. It is the primary way to style PrimeNG components and is used in 80+ files across the codebase.
+
+<p-drawer
+[pt]="{
+root: 'min-w-xl w-3/7 h-[calc(100vh-4rem)] end-0 !start-auto',
+content: 'h-full p-0'
+}"
+/>
+
+<p-tabs [pt]="{ root: 'px-1 pt-1 pb-0 border-none' }" />
+
+<!-- Conditional classes work too -->
+<p-accordion
+[pt]="{ contentWrapper: expanded() ? 'min-w-0' : 'overflow-hidden' }"
+/>
+
+Finding part names: Open the PrimeNG 21 docs for the target component and navigate to its "PassThrough" section â€” it lists every available part (root, content, header, label, icon, etc.).
+
+Rules:
+
+- Always use Tailwind utility classes as values
+- Use the ! (important) prefix only when a PrimeNG default absolutely cannot be overridden otherwise
+- Always prefer pt over adding entries to src/style/primeng-overrides.css
+
+---
+
+## Tailwind conventions
+
+- Use start/end instead of left/right for all directional utilities (ms-, me-, ps-, pe-, start-, end-).
+- Layouts must be responsive down to small phones (sm: breakpoint minimum).
+- Do not create custom CSS files for component-level styles use Tailwind utilities exclusively.
