@@ -1,6 +1,7 @@
 import { DOCUMENT, inject, InjectionToken } from '@angular/core';
 
 export const UBFB_WINDOW = new InjectionToken<Window>(ngDevMode ? '[UBFB_WINDOW]' : '', {
+  providedIn: 'root',
   factory: () => {
     const { defaultView } = inject(DOCUMENT);
 

@@ -10,7 +10,7 @@ export const primengConfig: PrimeNGConfigType = {
       darkModeSelector: '.p-dark',
       cssLayer: {
         name: 'primeng',
-        order: 'theme, base, primeng',
+        order: 'theme, base, primeng, overrides',
       },
     },
   },

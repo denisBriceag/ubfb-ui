@@ -1,0 +1,162 @@
+<div
+  class="bg-surface-0 dark:bg-surface-900 p-8 md:p-12 shadow-sm rounded-2xl w-full max-w-md mx-auto flex flex-col gap-8"
+>
+  <div class="flex flex-col items-center gap-4">
+    <div class="flex flex-col items-center gap-2 w-full">
+      <div
+        class="text-surface-900 dark:text-surface-0 text-2xl font-semibold leading-tight text-start w-full"
+      >
+        Sign Up
+      </div>
+      <div class="text-start w-full">
+        <span class="text-surface-700 dark:text-surface-200 leading-normal"
+          >Already have an account?</span
+        >
+        <a
+          class="text-primary font-medium ml-1 cursor-pointer hover:text-primary-emphasis"
+          routerLink="/auth/sign-in"
+          >Sign In</a
+        >
+      </div>
+    </div>
+  </div>
+
+  <form class="flex flex-col gap-6 w-full" id="signUpForm" [formGroup]="form" (submit)="signUp()">
+    <div class="flex flex-col gap-2 w-full">
+      <label for="email" class="text-surface-900 dark:text-surface-0 font-medium leading-normal"
+        >Email Address</label
+      >
+      <input
+        pInputText
+        formControlName="email"
+        id="email"
+        type="email"
+        placeholder="Email address"
+        class="w-full px-3 py-2 shadow-sm rounded-lg"
+        [pAutoFocus]="true"
+      />
+      @if (form.controls.email.touched && form.controls.email.dirty) {
+        @if (form.controls.email.hasError('pattern')) {
+          <p-message severity="error" size="small" variant="simple"
+            >Email should be valid</p-message
+          >
+        } @else if (form.controls.email.hasError('required')) {
+          <p-message severity="error" size="small" variant="simple"
+            >Email should not be empty</p-message
+          >
+        }
+      }
+    </div>
+
+    <div class="flex flex-col gap-2 w-full">
+      <label for="name" class="text-surface-900 dark:text-surface-0 font-medium leading-normal"
+        >Name</label
+      >
+      <input
+        pInputText
+        formControlName="name"
+        id="name"
+        type="text"
+        placeholder="Name"
+        class="w-full px-3 py-2 shadow-sm rounded-lg"
+      />
+      @if (form.controls.name.touched && form.controls.name.dirty) {
+        @if (form.controls.name.hasError('minlength')) {
+          <p-message severity="error" size="small" variant="simple"
+            >Name should have at least 2 characters</p-message
+          >
+        } @else if (form.controls.name.hasError('required')) {
+          <p-message severity="error" size="small" variant="simple"
+            >Name should not be empty</p-message
+          >
+        }
+      }
+    </div>
+
+    <div class="flex flex-col gap-2 w-full">
+      <label for="surname" class="text-surface-900 dark:text-surface-0 font-medium leading-normal"
+        >Surname</label
+      >
+      <input
+        pInputText
+        formControlName="surname"
+        id="surname"
+        type="text"
+        placeholder="Surname"
+        class="w-full px-3 py-2 shadow-sm rounded-lg"
+      />
+      @if (form.controls.surname.touched && form.controls.surname.dirty) {
+        @if (form.controls.surname.hasError('minlength')) {
+          <p-message severity="error" size="small" variant="simple"
+            >Surname should have at least 2 characters</p-message
+          >
+        } @else if (form.controls.surname.hasError('required')) {
+          <p-message severity="error" size="small" variant="simple"
+            >Surname should not be empty</p-message
+          >
+        }
+      }
+    </div>
+
+    <div class="flex flex-col gap-2 w-full">
+      <label for="password" class="text-surface-900 dark:text-surface-0 font-medium leading-normal"
+        >Password</label
+      >
+      <p-password
+        formControlName="password"
+        inputId="password"
+        placeholder="Password"
+        inputStyleClass="w-full px-3 py-2 shadow-sm rounded-lg"
+        [toggleMask]="true"
+        [feedback]="false"
+      />
+      @if (form.controls.password.touched && form.controls.password.dirty) {
+        @if (form.controls.password.hasError('minlength')) {
+          <p-message severity="error" size="small" variant="simple"
+            >Password should have at least
+            {{ form.controls.password.errors?.['minlength'].requiredLength }} characters</p-message
+          >
+        } @else if (form.controls.password.hasError('required')) {
+          <p-message severity="error" size="small" variant="simple"
+            >Password should not be empty</p-message
+          >
+        }
+      }
+    </div>
+
+    <div class="flex flex-col gap-2 w-full">
+      <label
+        for="confirmPassword"
+        class="text-surface-900 dark:text-surface-0 font-medium leading-normal"
+        >Confirm password</label
+      >
+
+      <p-password
+        formControlName="confirmPassword"
+        inputId="confirmPassword"
+        placeholder="Confirm password"
+        inputStyleClass="w-full px-3 py-2 shadow-sm rounded-lg"
+        [toggleMask]="true"
+        [feedback]="false"
+      />
+      @if (form.controls.confirmPassword.touched && form.controls.confirmPassword.dirty) {
+        @if (form.hasError('passwordMissMatch')) {
+          <p-message severity="error" size="small" variant="simple">Password miss match</p-message>
+        }
+      }
+    </div>
+
+    <input type="hidden" formControlName="role" />
+  </form>
+
+  <button
+    pButton
+    type="submit"
+    form="signUpForm"
+    class="w-full py-2 rounded-lg flex justify-center items-center gap-2"
+    [disabled]="form.invalid || loading()"
+  >
+    <i pButtonIcon class="pi pi-user text-base! leading-normal!"></i>
+    <span pButtonLabel>Sign Up</span>
+  </button>
+</div>

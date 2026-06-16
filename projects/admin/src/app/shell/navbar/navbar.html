@@ -18,7 +18,7 @@
   </div>
 
   <div class="flex items-center gap-2">
-    @if (themeService.currentTheme$ | async; as theme) {
+    @if (themeService.currentTheme(); as theme) {
       <p-button
         rounded="true"
         severity="secondary"
@@ -28,11 +28,13 @@
     }
 
     <p-avatar
+      class="cursor-pointer"
       size="large"
       shape="circle"
-      [pt]="{
-        root: { class: 'w-[var(--p-button-icon-only-width)] h-[var(--p-button-icon-only-width)]' },
-      }"
+      [label]="store.initials()"
+      (click)="menu.toggle($event)"
     />
+
+    <p-menu #menu [model]="menuItems" [popup]="true" ></p-menu>
   </div>
 </div>

@@ -1,5 +1,11 @@
 @layer overrides {
-  .dark {
+  :root {
+    --p-breadcrumb-padding: 0;
+    --p-breadcrumb-background: var(--p-surface-0);
+  }
+
+  .p-dark {
     --p-button-text-secondary-color: #fff;
+    --p-breadcrumb-background: var(--p-surface-950);
   }
 }
