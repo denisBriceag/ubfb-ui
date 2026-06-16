@@ -1,0 +1,7 @@
+import { InjectionToken } from '@angular/core';
+import { environment } from '../../../environments/environment';
+
+export const ENV = new InjectionToken<typeof environment>(ngDevMode ? '[UBFB_ENVIRONMENT]' : '', {
+  providedIn: 'root',
+  factory: () => environment,
+});

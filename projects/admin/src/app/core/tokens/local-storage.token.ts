@@ -4,5 +4,5 @@ import { UBFB_WINDOW } from './window.token';
 
 export const UBFB_LOCAL_STORAGE = new InjectionToken<Storage | null>(
   ngDevMode ? '[UBFB_LOCAL_STORAGE]' : '',
-  { factory: () => inject(UBFB_WINDOW).localStorage },
+  { providedIn: 'root', factory: () => inject(UBFB_WINDOW).localStorage },
 );

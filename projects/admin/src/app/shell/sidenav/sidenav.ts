@@ -12,7 +12,8 @@ interface SidenavOption {
 }
 
 @Component({
-  selector: 'admin-sidenav',
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'aside[admin-sidenav]',
   templateUrl: './sidenav.html',
   imports: [LogoMobile, LogoDesktop, RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
