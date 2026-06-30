@@ -9,13 +9,13 @@ import {
   SignInModel,
   SignUpModel,
 } from './auth.model';
-import { ENV } from '../../tokens/env.token';
+import { UBFB_ENV } from '../../tokens/env.token';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly _env = inject(ENV);
+  private readonly _env = inject(UBFB_ENV);
   private readonly _http = inject(HttpClient);
 
   refresh(): Observable<AccessToken> {

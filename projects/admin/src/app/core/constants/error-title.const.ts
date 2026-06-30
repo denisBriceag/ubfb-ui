@@ -1,0 +1,66 @@
+import { ERROR_MAP } from './error-map.const';
+
+export const ERROR_TITLE: Record<keyof typeof ERROR_MAP, string> = {
+  INVALID_CREDENTIALS: 'Invalid credentials',
+  INVALID_ACCESS_TOKEN: 'Invalid session',
+  INVALID_REFRESH_TOKEN: 'Session expired',
+  INVALID_RESET_TOKEN: 'Link expired',
+  INVALID_TOKEN_TYPE: 'Invalid token',
+  ACCESS_TOKEN_EXPIRED: 'Session expired',
+  ACCESS_TOKEN_REVOKED: 'Session revoked',
+  ACCESS_TOKEN_REUSE: 'Security alert',
+  REFRESH_TOKEN_REUSE: 'Security alert',
+  NO_ACCESS_TOKEN: 'Not authenticated',
+  ACCESS_DENIED: 'Access denied',
+  ACCESS_DENIED_NO_REFRESH_TOKEN: 'Access denied',
+  NOT_ENOUGH_PERMISSIONS: 'Permission denied',
+  NOT_ENOUGH_PERMISSIONS_OPERATION: 'Permission denied',
+  SIGN_UP_CONFLICT: 'Account exists',
+  PASSWORD_RESET_TOKEN_EXPIRED: 'Link expired',
+  PASS_DOES_NOT_MATCH: 'Password mismatch',
+  SELF_DELETION_NOT_ALLOWED: 'Action not allowed',
+
+  VALIDATION_ERROR: 'Validation error',
+  INVALID_ID: 'Invalid ID',
+  INVALID_EMAIL: 'Invalid email',
+
+  GENERIC_NOT_FOUND_EXCEPTION: 'Not found',
+  GENERIC_CONFLICT_EXCEPTION: 'Conflict',
+  USER_DOES_NO_EXIST: 'User not found',
+  NEWS_DOES_NO_EXIST: 'Article not found',
+  IMAGE_DOES_NO_EXIST: 'Image not found',
+  NO_CONTENT: 'No content',
+
+  VERSION_MISMATCH: 'Conflict',
+  VERSION_NOT_FOUND: 'Version error',
+
+  INCORRECT_IMAGE_PAYLOAD: 'Invalid image',
+  IMAGE_WITHOUT_WIDTH: 'Missing image width',
+  IMAGE_MINIMUM_WIDTH: 'Image too small',
+  IMAGE_NO_DOTS: 'Invalid filename',
+
+  ALCOHOL_PERCENTAGE_WRONG_DECIMAL_PLACES: 'Invalid percentage',
+  ALCOHOL_PERCENTAGE_NON_NEGATIVE: 'Invalid percentage',
+  ALCOHOL_PERCENTAGE_NO_EXCEED: 'Invalid percentage',
+
+  S3_READ_FAILED: 'File read error',
+  S3_UPLOAD_FAILED: 'Upload failed',
+
+  OPERATION_ERROR: 'Operation failed',
+  TOO_MANY_REQUESTS: 'Too many requests',
+  INTERNAL_ERROR: 'Server error',
+
+  PG_UNIQUE_VIOLATION: 'Duplicate record',
+  DB_UNIQUE_VIOLATION: 'Duplicate record',
+  DB_FOREIGN_KEY_VIOLATION: 'Reference error',
+  DB_NOT_NULL_VIOLATION: 'Missing field',
+  DB_SERIALIZATION_FAILURE: 'Conflict',
+  DB_DEADLOCK_DETECTED: 'Conflict',
+  DB_INVALID_INPUT: 'Invalid input',
+  DB_VALUE_TOO_LONG: 'Value too long',
+  DB_CHECK_VIOLATION: 'Constraint error',
+  DB_LOCK_NOT_AVAILABLE: 'Record locked',
+  DB_TIMEOUT: 'Timeout',
+  DB_UNAVAILABLE: 'Database unavailable',
+  DB_GENERIC_ERROR: 'Database error',
+};

@@ -1,0 +1,26 @@
+<div class="bg-surface-0 dark:bg-surface-950 p-20">
+  <div class="flex flex-col gap-10 items-center justify-center min-h-140">
+    <div class="flex flex-col items-center gap-4">
+      <h1 class="text-5xl font-bold text-surface-900 dark:text-surface-0 text-center leading-tight">Something went wrong</h1>
+      <p class="text-lg text-surface-500 dark:text-surface-400 text-center mt-0 leading-normal">Sorry, we couldn't find the page.</p>
+      @if (withRefresh()) {
+        <p class="text-lg text-surface-500 dark:text-surface-400 text-center mt-0 leading-normal">Try to refresh data.</p>
+      }
+    </div>
+
+    <div class="flex justify-center items-center gap-6 flex-wrap">
+      <button pButton [text]="true" class="text-base! leading-normal!">
+        <i pButtonIcon class="pi pi-arrow-left"></i>
+        <span pButtonLabel>Go to Dashboard</span>
+      </button>
+
+      @if (withRefresh()) {
+        <button pButton class="text-base! leading-normal!" (click)="refresh.emit()">
+          <i pButtonIcon class="pi pi-refresh"></i>
+
+          <span pButtonLabel>Refresh</span>
+        </button>
+      }
+    </div>
+  </div>
+</div>
