@@ -1,0 +1,157 @@
+@if (!isError()) {
+  @if (!isLoading() && updater()) {
+    <admin-updater-info class="block mb-8" [updater]="updater()!" />
+  }
+
+  <form class="flex flex-col gap-4" (submit)="submitContacts($event)">
+    @if (isLoading()) {
+      <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-2">
+          <p-skeleton width="4rem" height="0.875rem" borderRadius="0.25rem" />
+
+          <div class="flex gap-2">
+            <p-skeleton width="3.5rem" height="2rem" borderRadius="0.375rem" />
+            <p-skeleton width="3.5rem" height="2rem" borderRadius="0.375rem" />
+            <p-skeleton width="3.5rem" height="2rem" borderRadius="0.375rem" />
+          </div>
+
+          <p-skeleton height="2.625rem" borderRadius="0.5rem" />
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <p-skeleton width="3rem" height="0.875rem" borderRadius="0.25rem" />
+
+          <div class="flex gap-2">
+            <p-skeleton width="3.5rem" height="2rem" borderRadius="0.375rem" />
+            <p-skeleton width="3.5rem" height="2rem" borderRadius="0.375rem" />
+            <p-skeleton width="3.5rem" height="2rem" borderRadius="0.375rem" />
+          </div>
+
+          <p-skeleton height="2.625rem" borderRadius="0.5rem" />
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <p-skeleton width="5rem" height="0.875rem" borderRadius="0.25rem" />
+
+          <div class="flex gap-2">
+            <p-skeleton width="3.5rem" height="2rem" borderRadius="0.375rem" />
+            <p-skeleton width="3.5rem" height="2rem" borderRadius="0.375rem" />
+            <p-skeleton width="3.5rem" height="2rem" borderRadius="0.375rem" />
+          </div>
+
+          <p-skeleton height="2.625rem" borderRadius="0.5rem" />
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <p-skeleton width="2rem" height="0.875rem" borderRadius="0.25rem" />
+
+          <p-skeleton height="2.625rem" borderRadius="0.5rem" />
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <p-skeleton width="8.5rem" height="0.875rem" borderRadius="0.25rem" />
+
+          <p-skeleton height="2.625rem" borderRadius="0.5rem" />
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <p-skeleton width="5.5rem" height="0.875rem" borderRadius="0.25rem" />
+
+          <p-skeleton height="2.625rem" borderRadius="0.5rem" />
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <p-skeleton width="3rem" height="0.875rem" borderRadius="0.25rem" />
+
+          <p-skeleton height="2.625rem" borderRadius="0.5rem" />
+        </div>
+      </div>
+    } @else {
+      <admin-multi-language-field [formField]="contactsForm.street" label="Street" />
+      <admin-multi-language-field [formField]="contactsForm.city" label="City" />
+      <admin-multi-language-field [formField]="contactsForm.country" label="Country" />
+
+      <div class="flex flex-col gap-2">
+        <label for="zip" class="font-medium text-surface-900 dark:text-surface-0">Zip</label>
+
+        <input
+          pInputText
+          id="zip"
+          placeholder="MD-____"
+          class="w-full px-3 py-2 shadow-sm rounded-lg"
+          [pInputMask]="'MD-9999'"
+          [formField]="contactsForm.zip"
+        />
+
+        <admin-control-errors [field]="contactsForm.zip()"/>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label for="secretaryPhone" class="font-medium text-surface-900 dark:text-surface-0"
+          >Secretary phone</label
+        >
+
+        <input
+          pInputText
+          id="secretaryPhone"
+          placeholder="+373________"
+          class="w-full px-3 py-2 shadow-sm rounded-lg"
+          [pInputMask]="'+37399999999'"
+          [autoClear]="false"
+          [formField]="contactsForm.secretaryPhone"
+        />
+
+        <admin-control-errors [field]="contactsForm.secretaryPhone()"/>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label for="salesPhone" class="font-medium text-surface-900 dark:text-surface-0"
+          >Sales phone</label
+        >
+
+        <input
+          pInputText
+          id="salesPhone"
+          placeholder="+373________"
+          class="w-full px-3 py-2 shadow-sm rounded-lg"
+          [pInputMask]="'+37399999999'"
+          [autoClear]="false"
+          [formField]="contactsForm.salesPhone"
+        />
+
+        <admin-control-errors [field]="contactsForm.salesPhone()"/>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label for="email" class="font-medium text-surface-900 dark:text-surface-0">Email</label>
+
+        <input
+          id="email"
+          type="email"
+          class="w-full px-3 py-2 shadow-sm rounded-lg"
+          pInputText
+          [formField]="contactsForm.email"
+        />
+
+        <admin-control-errors [field]="contactsForm.email()"/>
+      </div>
+    }
+
+    <div class="flex justify-end">
+      <button
+        pButton
+        type="submit"
+        class="py-2 rounded-lg"
+        [disabled]="!hasChanges() || contactsForm().invalid() || isSubmitting() || isLoading()"
+      >
+        @if (isSubmitting()) {
+          <i class="pi pi-spinner animate-spin"></i>
+        }
+
+        <span pButtonLabel>Update</span>
+      </button>
+    </div>
+  </form>
+} @else {
+  <admin-error [withRefresh]="true" (refresh)="getContacts()" />
+}

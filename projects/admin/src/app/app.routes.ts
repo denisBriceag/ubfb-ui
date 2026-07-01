@@ -1,8 +1,8 @@
-import { Routes } from '@angular/router';
 import { Shell } from './shell/shell/shell';
 import { authGuard } from './core/guards/auth/auth-guard';
+import { UbfbRoute } from './typings/ubfb-route.type';
 
-export const routes: Routes = [
+export const routes: UbfbRoute[] = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
   {
     path: '',
@@ -14,6 +14,13 @@ export const routes: Routes = [
         title: 'Dashboard',
         loadComponent: () =>
           import('./domains/dashboard/dashboard-page').then((m) => m.DashboardPage),
+        data: { title: 'Dashboard' },
+      },
+      {
+        path: 'contacts',
+        title: 'Contacts',
+        loadComponent: () => import('./domains/contacts/contacts').then((m) => m.Contacts),
+        data: { title: 'Contacts', breadcrumb: { title: 'Contacts', url: '/contacts' } },
       },
     ],
   },

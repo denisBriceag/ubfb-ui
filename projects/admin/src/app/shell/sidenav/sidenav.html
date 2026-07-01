@@ -13,8 +13,9 @@
         <div class="flex flex-col gap-1">
           @for (option of options; track $index) {
             <a
-              [routerLink]="option.link"
               class="flex items-center cursor-pointer p-3 gap-2 rounded-lg text-surface-700 dark:text-surface-200 hover:bg-primary-50 dark:hover:bg-primary-800 transition-colors duration-150 hover:text-primary-900 dark:hover:text-primary-50 group border border-transparent hover:border hover:border-surface-200 dark:hover:border-surface-700"
+              routerLinkActive="bg-primary-50 dark:bg-primary-800 text-primary-900 dark:text-primary-50"
+              [routerLink]="option.link"
             >
               @if(!option.iconName) {
                 <i
@@ -33,10 +34,12 @@
           }
         </div>
 
-        @if (true) {
+        <ng-container *adminPermission="Roles.SUPER_ADMIN">
           <hr class="border-t border-surface-200 dark:border-surface-800 my-0" />
 
           <a
+            routerLink="/users"
+            routerLinkActive="bg-primary-50 dark:bg-primary-800 text-primary-900 dark:text-primary-50"
             class="flex items-center cursor-pointer p-3 gap-2 rounded-lg text-surface-700 dark:text-surface-200 hover:bg-primary-50 dark:hover:bg-primary-800 transition-colors duration-150 hover:text-primary-900 dark:hover:text-primary-50 group border border-transparent hover:border hover:border-surface-200 dark:hover:border-surface-700"
           >
             <i
@@ -44,7 +47,7 @@
             ></i>
             <span class="font-medium text-base leading-tight">Users</span>
           </a>
-        }
+        </ng-container>
       </div>
     </div>
 

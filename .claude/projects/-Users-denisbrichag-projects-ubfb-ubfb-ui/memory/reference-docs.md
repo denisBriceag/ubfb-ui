@@ -8,6 +8,7 @@ metadata:
 - Angular style guide: https://angular.dev/style-guide
 - Angular components: https://angular.dev/essentials/components
 - Angular signals: https://angular.dev/essentials/signals
+- Angular signal forms: https://angular.dev/guide/forms/signals/overview
 - Angular templates: https://angular.dev/essentials/templates
 - Angular DI: https://angular.dev/essentials/dependency-injection
 - Tailwind: https://tailwindcss.com/docs/styling-with-utility-classes

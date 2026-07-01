@@ -1,8 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 import { LogoMobile } from '../logos/logo-mobile/logo-mobile';
 import { LogoDesktop } from '../logos/logo-desktop/logo-desktop';
+import { Roles } from '../../typings/role.enum';
+import { Permission } from '../../shared/directives/permission/permission';
 
 interface SidenavOption {
   label: string;
@@ -15,14 +17,15 @@ interface SidenavOption {
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'aside[admin-sidenav]',
   templateUrl: './sidenav.html',
-  imports: [LogoMobile, LogoDesktop, RouterLink],
+  imports: [LogoMobile, LogoDesktop, RouterLink, Permission, RouterLinkActive],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Sidenav {
+  readonly Roles = Roles;
   readonly options: SidenavOption[] = [
     {
       label: 'Dashboard',
-      link: '/',
+      link: '/dashboard',
       iconClass: 'pi pi-home',
     },
     {
